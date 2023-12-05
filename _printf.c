@@ -1,64 +1,43 @@
 #include "main.h"
-
 /**
- * _printf - a function to implement custom printf
- *
- * @format: input string
- *
- * Return: number of chracter
-*/
-int _printf(const char *format, ...)
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
+ */
+int _printf(const char * const format, ...)
 {
-	int char_counter = 0;
+	convert p[] = {
+		{"%s", print_string}, {"%c", print_char},
+		{"%%", print_37},
+		{"%i", print_int}, {"%d", print_decimal}
 
-	va_list args_list;
+	};
 
-	va_start(args_list, format);
+	va_list args;
+	int i = 0, j, length = 0;
 
-	char_counter += format_handler(format, args_list);
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
-	va_end(args_list);
-	return (char_counter);
-}
-
-/**
- * format_handler - a function to implement custom printf
- *
- * @format: input string
- * @args_list: arguments list
- *
- * Return: number of chracter
-*/
-int format_handler(const char *format, va_list args_list)
-{
-	int char_counter = 0;
-	const char *p = format;
-
-	for (; *p; p++)
+Here:
+	while (format[i] != '\0')
 	{
-		if (*p == '%')
+		j = 13;
+		while (j >= 0)
 		{
-			p++;
-			switch (*p)
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
 			{
-				case 'c':
-					char_counter += _putchar(va_arg(args_list, int));
-					break;
-				case 's':
-					char_counter += _puts(va_arg(args_list, char *));
-					break;
-				case '%':
-					char_counter += _putchar('%');
-					break;
-				default:
-					/* Handle invalid format specifiers */
-					_putchar('%');
-					_putchar(*format);
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
 			}
-		} else
-		{
-			char_counter += _putchar(*p);
+			j--;
 		}
+		_putchar(format[i]);
+		length++;
+		i++;
 	}
-	return (char_counter);
+	va_end(args);
+	return (length);
 }
