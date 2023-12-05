@@ -9,60 +9,55 @@
  * Return: number of chracter
  * 
 */
-int _printf(const char *format, ...)
-{
-
-    va_list args_list;
+int _printf(const char *format, ...) {
     int printed_chars = 0;
-    int ret = 0;
-    char ch;
+    va_list args;
+    va_start(args, format);
+ 
 
-    va_start(args_list, format);
-
-    for (int i = 0; format[i] != '\0'; i++)
-    {
-        if (format[i] == '%')
-        {
-            i++;
-            switch (format[i])
-            {
-                case 'd':
-                case 'i':
-                    ret = va_arg(args_list, int);
-                    printed_chars += printf("%d", ret);
-                    break;
-
-                case 'u':
-                    ret = va_arg(args_list, unsigned int);
-                    printed_chars += printf("%u", ret);
-                    break;
-
-                case 'f':
-                    ret = va_arg(args_list, double);
-                    printed_chars += printf("%f", ret);
-                    break;
-
-                case 'c':
-                    ch = (char)va_arg(args_list, int);
-                    printed_chars += printf("%c", ch);
-                    break;
-
-                case 's':
-                    printed_chars += printf("%s", va_arg(args_list, char *));
-                    break;
-
-                default:
-                    printed_chars += printf("%%%c", format[i]);
-                    break;
+    while (*format != '\0') {
+        if (*format == '%') {
+            format++;
+            if (*format == '\0') {
+                break;
             }
-        }
-        else
-        {
-            putchar(format[i]);
+            if (*format == '%') {
+                printed_chars += print_percent();
+            } else if (*format == 'c') {
+                char c = va_arg(args, int);
+                printed_chars += print_char(c);
+            } else if (*format == 's') {
+                char *str = va_arg(args, char *);
+                printed_chars += print_string(str);
+            } else {
+                putchar('%');
+                putchar(*format);
+                printed_chars += 2;
+            }
+        } else {
+            putchar(*format);
             printed_chars++;
         }
+
+        format++;
     }
 
-    va_end(args_list);
+    va_end(args);
+
     return printed_chars;
+}
+
+int print_char(char c) {
+    putchar(c);
+    return 1;
+}
+
+int print_string(const char *str) {
+    fputs(str, stdout);
+    return strlen(str);
+}
+
+int print_percent() {
+    putchar('%');
+    return 1;
 }
