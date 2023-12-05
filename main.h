@@ -32,6 +32,6 @@ int print_decimal(va_list args);
 /*helpers*/
 int _putchar(char c);
 int _puts(char *str);
-int _strlen(char *s)
+int _strlen(char *s);
 
 #endif /*__MAIN__H__*/
