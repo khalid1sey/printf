@@ -4,52 +4,61 @@
  * _printf - a function to implement custom printf
  *
  * @format: input string
- * @...: represents variable arguments
  *
  * Return: number of chracter
- *
 */
 int _printf(const char *format, ...)
 {
-	int printed_chars = 0;
+	int char_counter = 0;
 
-	va_list args;
+	va_list args_list;
 
-	va_start(args, format);
+	va_start(args_list, format);
 
-	while (*format != '\0')
-	{
-		if (*format == '%')
-		{
-			format++;
-			if (*format == '\0')
-			{
-				break;
-			}
+	char_counter += format_handler(format, args_list);
 
-			printed_chars += handle_format(&format, args);
-		}
-		else
-		{
-			putchar(*format);
-			printed_chars++;
-		}
-
-		format++;
-	}
-
-	va_end(args);
-	return (printed_chars);
+	va_end(args_list);
+	return (char_counter);
 }
 
 /**
- * print_percent - handles % sign
+ * format_handler - a function to implement custom printf
  *
- * Return: 1 if percent
+ * @format: input string
+ * @args_list: arguments list
+ *
+ * Return: number of chracter
 */
-
-int print_percent(void)
+int format_handler(const char *format, va_list args_list)
 {
-	putchar('%');
-	return (1);
+	int char_counter = 0;
+	const char *p = format;
+
+	for (; *p; p++)
+	{
+		if (*p == '%')
+		{
+			p++;
+			switch (*p)
+			{
+				case 'c':
+					char_counter += _putchar(va_arg(args_list, int));
+					break;
+				case 's':
+					char_counter += _puts(va_arg(args_list, char *));
+					break;
+				case '%':
+					char_counter += _putchar('%');
+					break;
+				default:
+					/* Handle invalid format specifiers */
+					_putchar('%');
+					_putchar(*format);
+			}
+		} else
+		{
+			char_counter += _putchar(*p);
+		}
+	}
+	return (char_counter);
 }
