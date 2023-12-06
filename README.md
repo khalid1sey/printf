@@ -9,7 +9,7 @@ At the core of printf is the format string. This string contains both text and f
 Here are some common format specifiers:
 
 <table>
-    <tr>%d: Format as a signed decimal integer.</tr>
+    <tr><td>%d:</td> <td>Format as a signed decimal integer.</td></tr>
     <tr>%d: Format as a signed decimal integer.</tr>
     <tr>%u: Format as an unsigned decimal integer.</tr>
     <tr>%f: Format as a floating-point number.</tr>

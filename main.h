@@ -24,12 +24,15 @@ typedef struct format
 	int (*fptr)();
 } conversion_specifier;
 
-/*Handlers*/
+/*print_formats.c*/
 int print_char(va_list val);
 int print_string(va_list val);
 int print_37(void);
 int print_int(va_list args);
 int print_decimal(va_list args);
+
+/*print_formats2.c*/
+int print_binary(va_list val);
 
 /*helpers*/
 int _putchar(char c);
