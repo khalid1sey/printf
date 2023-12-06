@@ -1,20 +1,66 @@
 0x11. C - printf
 
 
-The printf function in C is used for formatted output.
-It’s an essential tool for displaying information to users and debugging programs.The printf function processes the format string, replacing format specifiers with the actual values you provide as arguments.
+<h3>_printf - Custom Print Function</h3>
 
-At the core of printf is the format string. This string contains both text and format specifiers, which are placeholders for the values you want to print. Format specifiers start with a ‘%’ character, followed by a character that indicates the type of data to be printed (e.g., %d for integers, %s for strings).
+The _printf function is a custom print function in C that supports various format specifiers. It allows for flexible printing of characters, strings, integers, decimals, and binary numbers.
 
-Here are some common format specifiers:
+Function Signature
+c
 
+int _printf(const char *format, ...);
+
+<h3>unction Parameters</h3>
+
+    format: A pointer to a character array (const char*) representing the format string that specifies the desired output format.
+    ...: Variadic arguments that correspond to the format specifiers in the format string.
+
+Supported Format Specifiers
+Here are some commonly used format specifiers in printf:
 <table>
-    <tr><td>%d:</td> <td>Format as a signed decimal integer.</td></tr>
-    <tr>%d: Format as a signed decimal integer.</tr>
-    <tr>%u: Format as an unsigned decimal integer.</tr>
-    <tr>%f: Format as a floating-point number.</tr>
-    <tr> %s: Format as a null-terminated string.</tr>
-    <tr>%c: Format as a character.</tr>
-    <tr>%x: Format as a hexadecimal number, lowercase.</tr>
-    <tr>%X: Format as a hexadecimal number, uppercase.</tr>
+   <tr> Here are some commonly used format specifiers in printf:</tr>
+    <tr><td>%c:</td> <td> Format as a character.</td></tr>
+    <tr><td> %s:</td> <td>Format as a null-terminated string.</td></tr>
+     <tr><td> %i:</td> <td>Format as a signed integer.</td></tr>
+    <tr><td>%d:</td> <td>Format as a signed decimal.</td></tr>
+     <tr><td> %b:</td> <td>Format as Unsigned binary.</td></tr>
+    <tr><td>%u :</td> <td>Format as an unsigned decimal integer.</td></tr>
+     <tr><td> %o:</td> <td>FFormat as an octal.</td></tr>
+    <tr><td>%x: </td> <td>Format as a hexadecimal number, lowercase.</td></tr>
+     <tr><td>%X: </td> <td>Format as a hexadecimal number, uppercase.</td></tr>
 </table>
+
+Source Files
+
+The implementation of the _printf function is divided into multiple source files:
+
+<h3>Conversion Specifier Structure
+</h3>
+The conversion_specifier structure is a data structure used for mapping format specifiers to corresponding functions in C. It allows for flexible handling of different format specifiers in printf-like functions.
+Structure Definition
+
+<h3>The conversion_specifier structure has the following members:</h3>
+
+    specifier: A pointer to a character (char*) that represents the format specifier.
+    fptr: A pointer to a function (int (*)()) that takes no arguments and returns an integer.
+
+print_formats.c
+
+    print_char: Function to handle printing a character.
+    print_string: Function to handle printing a string.
+    print_37: Function to handle printing a percent specifier.
+    print_int: Function to handle printing signed decimal integers.
+    print_decimal: Function to handle printing unsigned decimal integers.
+
+print_formats2.c
+
+    print_binary: Function to handle printing a binary representation of an unsigned integer.
+
+helpers.c
+
+    _putchar: Function to print a character to the standard output.
+    _puts: Function to print a null-terminated string to the standard output.
+
+Purpose
+
+The _printf function provides a customizable and extensible print function in C, similar to the standard printf function. It allows for printing different data types and format specifiers, providing flexibility and control over the output format.
