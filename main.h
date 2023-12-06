@@ -35,6 +35,10 @@ int print_decimal(va_list args);
 
 /*print_formats2.c*/
 int print_binary(va_list val);
+int print_unsigned(va_list args);
+int print_oct(va_list args);
+int print_lower_hexa(va_list args);
+int print_upper_hexa(va_list args);
 
 /*helpers*/
 int _putchar(char c);

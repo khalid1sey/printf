@@ -33,3 +33,169 @@ int print_binary(va_list val)
 	}
 	return (count);
 }
+
+/**
+ * print_unsigned - Prints an unsigned integer.
+ * @args: The argument to print.
+ *
+ * Return: The number of characters printed.
+ */
+int print_unsigned(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+	unsigned int last_digit = num % 10;
+	unsigned int remaining_num = num / 10;
+	int count = 1;
+	unsigned int digit, divisor = 1;
+	unsigned int zero = 0;
+
+	if (last_digit < zero)
+	{
+		_putchar('-');
+		num = -num;
+		remaining_num = -remaining_num;
+		last_digit = -last_digit;
+		count++;
+	}
+
+	if (remaining_num > 0)
+	{
+		while (remaining_num / 10 != 0)
+		{
+			divisor *= 10;
+			remaining_num /= 10;
+		}
+
+		remaining_num = num;
+
+		while (divisor > 0)
+		{
+			digit = remaining_num / divisor;
+			_putchar(digit + '0');
+			remaining_num -= digit * divisor;
+			divisor /= 10;
+			count++;
+		}
+	}
+
+	_putchar(last_digit + '0');
+
+	return (count);
+}
+
+/**
+ * print_oct - Prints an octal number.
+ * @args: The argument list.
+ *
+ * Return: The number of characters printed.
+ */
+int print_oct(va_list args)
+{
+	int i;
+	int *digits;
+	int count = 0;
+	unsigned int num = va_arg(args, unsigned int);
+	unsigned int temp = num;
+
+	while (num / 8 != 0)
+	{
+		num /= 8;
+		count++;
+	}
+	count++;
+	digits = malloc(count * sizeof(int));
+
+	for (i = 0; i < count; i++)
+	{
+		digits[i] = temp % 8;
+		temp /= 8;
+	}
+
+	for (i = count - 1; i >= 0; i--)
+	{
+		_putchar(digits[i] + '0');
+	}
+
+	free(digits);
+	return (count);
+}
+
+/**
+ * print_lower_hexa - Prints a hexadecimal number.
+ * @args: The argument list.
+ *
+ * Return: The number of characters printed.
+ */
+int print_lower_hexa(va_list args)
+{
+	int i;
+	int *digits;
+	int count = 0;
+	unsigned int num = va_arg(args, unsigned int);
+	unsigned int temp = num;
+
+	while (num / 16 != 0)
+	{
+		num /= 16;
+		count++;
+	}
+	count++;
+	digits = malloc(count * sizeof(int));
+
+	for (i = 0; i < count; i++)
+	{
+		digits[i] = temp % 16;
+		temp /= 16;
+	}
+
+	for (i = count - 1; i >= 0; i--)
+	{
+		if (digits[i] > 9)
+			digits[i] = digits[i] + 39;
+
+		_putchar(digits[i] + '0');
+	}
+
+	free(digits);
+	return (count);
+}
+
+/**
+ * print_upper_hexa - Prints a hexadecimal number in uppercase.
+ * @args: The argument list.
+ *
+ * Return: The number of characters printed.
+ */
+int print_upper_hexa(va_list args)
+{
+	int i;
+	int *digits;
+	int count = 0;
+	unsigned int num = va_arg(args, unsigned int);
+	unsigned int temp = num;
+
+	while (num / 16 != 0)
+	{
+		num /= 16;
+		count++;
+	}
+	count++;
+	digits = malloc(count * sizeof(int));
+
+	for (i = 0; i < count; i++)
+	{
+		digits[i] = temp % 16;
+		temp /= 16;
+	}
+
+	for (i = count - 1; i >= 0; i--)
+	{
+		if (digits[i] > 9)
+			_putchar(digits[i] + 'A' - 10);
+		else
+			_putchar(digits[i] + '0');
+	}
+
+	free(digits);
+	return (count);
+}

@@ -13,7 +13,9 @@ int _printf(const char *format, ...)
 {
 	conversion_specifier conversion_table[] = {
 		{"%s", print_string}, {"%c", print_char}, {"%%", print_37},
-		{"%i", print_int}, {"%d", print_decimal}, {"%b", print_binary}
+		{"%i", print_int}, {"%d", print_decimal}, {"%b", print_binary},
+		{"%u", print_unsigned}, {"%o", print_oct}, {"%x", print_lower_hexa},
+		{"%X", print_upper_hexa}
 	};
 
 	int i = 0, length = 0;
@@ -27,7 +29,7 @@ int _printf(const char *format, ...)
 
 	while (format[i] != '\0')
 	{
-		j = 5;
+		j = 9;
 		while (j >= 0)
 		{
 			if (conversion_table[j].specifier[0] == format[i] &&

@@ -15,7 +15,7 @@ int _printf(const char *format, ...);
     format: A pointer to a character array (const char*) representing the format string that specifies the desired output format.
     ...: Variadic arguments that correspond to the format specifiers in the format string.
 
-Supported Format Specifiers
+<h3>Supported Format Specifiers</h3>
 Here are some commonly used format specifiers in printf:
 <table>
    <tr> Here are some commonly used format specifiers in printf:</tr>
@@ -25,18 +25,18 @@ Here are some commonly used format specifiers in printf:
     <tr><td>%d:</td> <td>Format as a signed decimal.</td></tr>
      <tr><td> %b:</td> <td>Format as Unsigned binary.</td></tr>
     <tr><td>%u :</td> <td>Format as an unsigned decimal integer.</td></tr>
-     <tr><td> %o:</td> <td>FFormat as an octal.</td></tr>
+     <tr><td> %o:</td> <td>Format as an octal.</td></tr>
     <tr><td>%x: </td> <td>Format as a hexadecimal number, lowercase.</td></tr>
      <tr><td>%X: </td> <td>Format as a hexadecimal number, uppercase.</td></tr>
 </table>
 
-Source Files
+<h3>Source Files</h3>
 
 The implementation of the _printf function is divided into multiple source files:
 
 <h3>Conversion Specifier Structure
 </h3>
-The conversion_specifier structure is a data structure used for mapping format specifiers to corresponding functions in C. It allows for flexible handling of different format specifiers in printf-like functions.
+The conversio<n_specifier structure is a data structure used for mapping format specifiers to corresponding functions in C. It allows for flexible handling of different format specifiers in printf-like functions.
 Structure Definition
 
 <h3>The conversion_specifier structure has the following members:</h3>
@@ -61,6 +61,10 @@ helpers.c
     _putchar: Function to print a character to the standard output.
     _puts: Function to print a null-terminated string to the standard output.
 
-Purpose
+<h4>Purpose</h4>
 
 The _printf function provides a customizable and extensible print function in C, similar to the standard printf function. It allows for printing different data types and format specifiers, providing flexibility and control over the output format.
+
+<h4>Authors</h4>
+
+Khalid Sinteayehu lilahseyfu@gmail.com
