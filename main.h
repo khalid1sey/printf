@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-int _printf(const char *format, ...);
+
 
 /**
  * struct format - store the format string and the corresponding arguments
@@ -23,6 +23,8 @@ typedef struct format
 	char *specifier;
 	int (*fptr)();
 } conversion_specifier;
+
+int _printf(const char *format, ...);
 
 /*print_formats.c*/
 int print_char(va_list val);
