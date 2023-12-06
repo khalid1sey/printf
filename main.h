@@ -6,21 +6,23 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
+
+int _printf(const char *format, ...);
 
 /**
- * struct format - converter for printf
- * @ph: type char pointer of the specifier
- * @function: function for the conversion specifier
+ * struct format - store the format string and the corresponding arguments
+ * @specifier: stores the string representation of the conversion specifier.
+ * @fptr: store the address of a specific function
  *
  */
 
 typedef struct format
 {
-	char *ph;
-	int (*function)();
-} convert;
-
-int _printf(const char *format, ...);
+	char *specifier;
+	int (*fptr)();
+} conversion_specifier;
 
 /*Handlers*/
 int print_char(va_list val);

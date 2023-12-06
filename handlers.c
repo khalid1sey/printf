@@ -23,7 +23,7 @@ int print_char(va_list val)
 int print_string(va_list val)
 {
 	char *s;
-	int i, len;
+	int i = 0, len = 0;
 
 	s = va_arg(val, char *);
 	if (s == NULL)
