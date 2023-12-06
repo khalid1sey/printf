@@ -42,45 +42,41 @@ int print_binary(va_list val)
  */
 int print_unsigned(va_list args)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	unsigned int last_digit = num % 10;
-	unsigned int remaining_num = num / 10;
-	int count = 1;
-	unsigned int digit, divisor = 1;
-	unsigned int zero = 0;
+	unsigned int n = va_arg(args, unsigned int);
+	int num, last = n % 10, digit, exp = 1;
+	int  i = 1;
 
-	if (last_digit < zero)
+	n = n / 10;
+	num = n;
+
+	if (last < 0)
 	{
 		_putchar('-');
 		num = -num;
-		remaining_num = -remaining_num;
-		last_digit = -last_digit;
-		count++;
+		n = -n;
+		last = -last;
+		i++;
 	}
-
-	if (remaining_num > 0)
+	if (num > 0)
 	{
-		while (remaining_num / 10 != 0)
+		while (num / 10 != 0)
 		{
-			divisor *= 10;
-			remaining_num /= 10;
+			exp = exp * 10;
+			num = num / 10;
 		}
-
-		remaining_num = num;
-
-		while (divisor > 0)
+		num = n;
+		while (exp > 0)
 		{
-			digit = remaining_num / divisor;
+			digit = num / exp;
 			_putchar(digit + '0');
-			remaining_num -= digit * divisor;
-			divisor /= 10;
-			count++;
+			num = num - (digit * exp);
+			exp = exp / 10;
+			i++;
 		}
 	}
+	_putchar(last + '0');
 
-	_putchar(last_digit + '0');
-
-	return (count);
+	return (i);
 }
 
 /**
