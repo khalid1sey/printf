@@ -40,6 +40,10 @@ int print_oct(va_list args);
 int print_lower_hexa(va_list args);
 int print_upper_hexa(va_list args);
 
+/*print_formats3.c*/
+int print_pointer(va_list val);
+int print_adress(unsigned long int num);
+
 /*helpers*/
 int _putchar(char c);
 int _puts(char *str);
