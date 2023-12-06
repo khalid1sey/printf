@@ -12,9 +12,8 @@
 int _printf(const char *format, ...)
 {
 	conversion_specifier conversion_table[] = {
-		{"%s", print_string}, {"%c", print_char},
-		{"%%", print_37},{"%i", print_int},
-		{"%d", print_decimal}, {"%b", print_binary}
+		{"%s", print_string}, {"%c", print_char}, {"%%", print_37},
+		{"%i", print_int}, {"%d", print_decimal}, {"%b", print_binary}
 	};
 
 	int i = 0, length = 0;
