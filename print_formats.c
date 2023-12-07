@@ -64,16 +64,10 @@ int print_int(va_list args)
 {
 	int n = va_arg(args, int);
 	int num, last = n % 10, digit, exp = 1, i = 1;
-	int length_modifier = va_arg(args, int);
 
 	n = n / 10;
 	num = n;
-	if (length_modifier == 'l')
-		num = va_arg(args, unsigned long int);
-	else if (length_modifier == 'h')
-		num = (unsigned short int)va_arg(args, unsigned int);
-	else
-		num = va_arg(args, unsigned int);
+
 
 	if (last < 0)
 	{
@@ -114,16 +108,10 @@ int print_decimal(va_list args)
 {
 	int n = va_arg(args, int);
 	int num, last = n % 10, digit, i = 1, exp = 1;
-	int length_modifier = va_arg(args, int);
 
 	n = n / 10;
 	num = n;
-	if (length_modifier == 'l')
-		num = va_arg(args, unsigned long int);
-	else if (length_modifier == 'h')
-		num = (unsigned short int)va_arg(args, unsigned int);
-	else
-		num = va_arg(args, unsigned int);
+
 
 	if (last < 0)
 	{
