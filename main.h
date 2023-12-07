@@ -43,7 +43,7 @@ int print_upper_hexa(va_list args);
 /*print_formats3.c*/
 int print_pointer(va_list val);
 int print_adress(unsigned long int num);
-int print_exc_string(va_list val);
+int print_string_with_escape(va_list args);
 
 /*helpers*/
 int _putchar(char c);

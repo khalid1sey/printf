@@ -70,40 +70,32 @@ int print_adress(unsigned long int num)
 
 #include "main.h"
 /**
- * print_exc_string - print exclusuives string.
+ * print_string_with_escape - print exclusuives string.
  * @val: parameter.
  * Return: integer.
  */
 
-int print_exc_string(va_list val)
+int print_string_with_escape(va_list args)
 {
-	char *s;
-	int i, length = 0;
-	int value;
+  char *str = va_arg(args, char *);
+  int i = 0, length = 0;
 
-	s = va_arg(val, char *);
-	if (s == NULL)
-		s = "(null)";
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		if (s[i] < 32 || s[i] >= 127)
-		{
-			_putchar('\\');
-			_putchar('x');
-			length = length + 2;
-			value = s[i];
-			if (value < 16)
-			{
-				_putchar('0');
-				length++;
-			}
-			length = length + print_adress(value);
-		}
-		else
-		{
-			_putchar(s[i]);
-			length++;
-		}
-	}
-	return (length);
+  while (str[i] != '\0') {
+    if (str[i] < 32 || str[i] >= 127) {
+      _putchar('\\');
+      _putchar('x');
+      length += 2;
+      char hex_chars[2];
+      sprintf(hex_chars, "%02X", (unsigned char)str[i]);
+      _putchar(hex_chars[0]);
+      _putchar(hex_chars[1]);
+      length += 2;
+    } else {
+      _putchar(str[i]);
+      length++;
+    }
+    i++;
+  }
+
+  return length;
 }
