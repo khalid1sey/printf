@@ -43,11 +43,17 @@ int print_binary(va_list val)
 int print_unsigned(va_list args)
 {
 	unsigned int n = va_arg(args, unsigned int);
-	int num, last = n % 10, digit, exp = 1;
-	int  i = 1;
+	int num, last = n % 10, digit, exp = 1,  i = 1;
+	int length_modifier = va_arg(args, int);
 
 	n = n / 10;
 	num = n;
+if (length_modifier == 0)
+		num = va_arg(args, unsigned int);
+	else if (length_modifier == 'l')
+		num = va_arg(args, unsigned long int);
+	else if (length_modifier == 'h')
+		num = (unsigned short int) va_arg(args, unsigned int);
 
 	if (last < 0)
 	{
@@ -75,7 +81,6 @@ int print_unsigned(va_list args)
 		}
 	}
 	_putchar(last + '0');
-
 	return (i);
 }
 
@@ -92,6 +97,14 @@ int print_oct(va_list args)
 	int count = 0;
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int temp = num;
+	int length_modifier = va_arg(args, int);
+
+	if (length_modifier == 'l')
+		num = va_arg(args, unsigned long int);
+	else if (length_modifier == 'h')
+		num = (unsigned short int)va_arg(args, unsigned int);
+	else
+		num = va_arg(args, unsigned int);
 
 	while (num / 8 != 0)
 	{
@@ -129,6 +142,14 @@ int print_lower_hexa(va_list args)
 	int count = 0;
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int temp = num;
+	int length_modifier = va_arg(args, int);
+
+	if (length_modifier == 'l')
+		num = va_arg(args, unsigned long int);
+	else if (length_modifier == 'h')
+		num = (unsigned short int)va_arg(args, unsigned int);
+	else
+		num = va_arg(args, unsigned int);
 
 	while (num / 16 != 0)
 	{
@@ -169,6 +190,14 @@ int print_upper_hexa(va_list args)
 	int count = 0;
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int temp = num;
+	int length_modifier = va_arg(args, int);
+
+	if (length_modifier == 'l')
+		num = va_arg(args, unsigned long int);
+	else if (length_modifier == 'h')
+		num = (unsigned short int)va_arg(args, unsigned int);
+	else
+		num = va_arg(args, unsigned int);
 
 	while (num / 16 != 0)
 	{

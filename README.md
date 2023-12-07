@@ -16,9 +16,10 @@ int _printf(const char *format, ...);
     ...: Variadic arguments that correspond to the format specifiers in the format string.
 
 <h3>Supported Format Specifiers</h3>
-Here are some commonly used format specifiers in printf:
+
 <table>
    <tr> Here are some commonly used format specifiers in printf:</tr>
+   <tr><td>specifier:</td> <td> description</td></tr>
     <tr><td>%c:</td> <td> Format as a character.</td></tr>
     <tr><td> %s:</td> <td>Format as a null-terminated string.</td></tr>
      <tr><td> %i:</td> <td>Format as a signed integer.</td></tr>
@@ -28,6 +29,7 @@ Here are some commonly used format specifiers in printf:
      <tr><td> %o:</td> <td>Format as an octal.</td></tr>
     <tr><td>%x: </td> <td>Format as a hexadecimal number, lowercase.</td></tr>
      <tr><td>%X: </td> <td>Format as a hexadecimal number, uppercase.</td></tr>
+     <tr><td>%p: </td> <td>Format as a pointer.</td></tr>
 </table>
 
 <h3>Source Files</h3>
