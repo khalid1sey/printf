@@ -15,7 +15,8 @@ int _printf(const char *format, ...)
 		{"%s", print_string}, {"%c", print_char}, {"%%", print_37},
 		{"%i", print_int}, {"%d", print_decimal}, {"%b", print_binary},
 		{"%u", print_unsigned}, {"%o", print_oct}, {"%x", print_lower_hexa},
-		{"%X", print_upper_hexa}, {"%p", print_pointer}, {"%S", print_string_with_escape}
+		{"%X", print_upper_hexa}, {"%p", print_pointer},
+		{"%S", print_string_with_escape}
 	};
 
 	int i = 0, length = 0;
@@ -48,7 +49,6 @@ int _printf(const char *format, ...)
 		length++;
 		i++;
 	}
-
 	va_end(args);
 	return (length);
 }

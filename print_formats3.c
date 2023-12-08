@@ -71,31 +71,34 @@ int print_adress(unsigned long int num)
 #include "main.h"
 /**
  * print_string_with_escape - print exclusuives string.
- * @val: parameter.
+ * @args: parameter.
  * Return: integer.
  */
 
 int print_string_with_escape(va_list args)
 {
-  char *str = va_arg(args, char *);
-  char hex_chars[3];
-  int i = 0, length = 0;
+	char *str = va_arg(args, char *);
+	char hex_chars[3];
+	int i = 0, length = 0;
 
-  while (str[i] != '\0') {
-    if (str[i] < 32 || str[i] >= 127) {
-      _putchar('\\');
-      _putchar('x');
-      length += 2;
-      _printf(hex_chars, "%02X", (unsigned char)str[i]);
-      _putchar(hex_chars[0]);
-      _putchar(hex_chars[1]);
-      length += 2;
-    } else {
-      _putchar(str[i]);
-      length++;
-    }
-    i++;
-  }
+	while (str[i] != '\0')
+	{
+		if (str[i] < 32 || str[i] >= 127)
+		{
+			_putchar('\\');
+			_putchar('x');
+			length += 2;
+			_printf(hex_chars, "%02X", (unsigned char)str[i]);
+			_putchar(hex_chars[0]);
+			_putchar(hex_chars[1]);
+			length += 2;
+		} else
+		{
+			_putchar(str[i]);
+			length++;
+		}
+		i++;
+	}
 
-  return length;
+	return (length);
 }

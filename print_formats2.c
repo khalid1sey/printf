@@ -91,7 +91,7 @@ int print_oct(va_list args)
 	int count = 0;
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int temp = num;
-	
+
 	while (num / 8 != 0)
 	{
 		num /= 8;
@@ -128,7 +128,7 @@ int print_lower_hexa(va_list args)
 	int count = 0;
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int temp = num;
-	
+
 	while (num / 16 != 0)
 	{
 		num /= 16;
@@ -168,7 +168,7 @@ int print_upper_hexa(va_list args)
 	int count = 0;
 	unsigned int num = va_arg(args, unsigned int);
 	unsigned int temp = num;
-	
+
 	while (num / 16 != 0)
 	{
 		num /= 16;
