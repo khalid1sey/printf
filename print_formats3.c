@@ -78,6 +78,7 @@ int print_adress(unsigned long int num)
 int print_string_with_escape(va_list args)
 {
   char *str = va_arg(args, char *);
+  char hex_chars[3];
   int i = 0, length = 0;
 
   while (str[i] != '\0') {
@@ -85,8 +86,7 @@ int print_string_with_escape(va_list args)
       _putchar('\\');
       _putchar('x');
       length += 2;
-      char hex_chars[2];
-      sprintf(hex_chars, "%02X", (unsigned char)str[i]);
+      _printf(hex_chars, "%02X", (unsigned char)str[i]);
       _putchar(hex_chars[0]);
       _putchar(hex_chars[1]);
       length += 2;
